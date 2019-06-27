@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Lista de Pratos</title>
+
+<link rel="stylesheet" th:href="@{/css/bootstrap/css/bootstrap.min.css}" />
+<link rel="stylesheet" th:href="@{/css/fontawesome/css/fontawesome-all.min.css}" />
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+	
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
+ <a class="navbar-brand" href="#">Tempero de Casa</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link"  th:href="@{/}">Pagina Principal <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/prato/listar}">Lista de Pratos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/usuario/cadastrar}">Cadastrar Cliente</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/prato/cadastrar}">Cadastrar Pratos</a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" th:href="@{/usuario/logar}">Longin</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="container mt-4">
+
+<h1 class="text-info h3">Lista de Pratos</h1>
+
+<div class="alert alert-success" role="alert" th:if="${!#strings.isEmpty(mensagem)}">
+	 	<span th:text="${mensagem}"></span> 
+	</div>
+	
+<table  class="table table-hover table-striped">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Imagem</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Preço</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+      <tr th:each="prato:${pratos}">
+      <td th:text="${prato.id}"></td>
+      <td> <img alt="" width="100px" height="100px" class="img-thumbnail" th:src="@{'/images/'+${prato.imagem}}"/> </td>
+      <td th:text="${prato.nomePrato}"></td>
+      <td th:text="${prato.precoPrato}"></td>   
+      <td><a th:href="@{/prato/editarr/{id}(id=${prato.id})}" class="btn btn-primary"><i class="fa fa-edit"></i> Editar</a> <a th:href="@{/prato/deletar/{id}(id=${prato.id})}" class="btn btn-danger"><i class="fa fa-trash"></i> Remover</a>   
+      </tr>
+</table>
+</div>
+
+
+</body>
+</html>
+

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Cadastrar Prato</title>
+	<link rel="stylesheet" th:href="@{/css/bootstrap/css/bootstrap.min.css}" />
+	<link rel="stylesheet" th:href="@{/css/fontawesome/css/fontawesome-all.min.css}" />
+</head>
+<body>
+
+
+	<form action="/prato/cadastrar" method="post" th:object="${prato}" enctype="multipart/form-data">
+
+	
+	<div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
+	  
+	</div>
+		<nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
+ <a class="navbar-brand" href="#">Tempero de Casa</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link"  th:href="@{/}">Pagina Principal <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/prato/listar}">Lista de Pratos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/usuario/cadastrar}">Cadastrar Cliente</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/prato/cadastrar}">Cadastrar Pratos</a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" th:href="@{/usuario/logar}">Login</a>
+      </li>
+    </ul>
+  </div>
+</nav><br>
+<div class="container">
+	<input type="hidden" th:field="*{id}">
+
+	
+	    Nome do Prato: <input type="text" class="form-control" th:field="*{nomePrato}"><br>
+	    Preço do Prato: <input type="text" class="form-control" th:field="*{precoPrato}"><br>
+	    Selecione Imagem: <input type="file" class="form-control" name="imagem">
+	    
+	
+	<input type="submit" class="btn btn-primary mt-2" value="Cadastrar">
+	
+	
+	</form>
+</div>
+
+
+</body>
+</html>
